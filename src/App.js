@@ -1,23 +1,14 @@
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+ <footer className="coder">
+                * Coded by Olena Azulay and <a href="https://github.com/Olena911/weath-app" target="_blank" rel="noreferrer">open sourced on GitHub</a> and hosted on <a href="https://www.netlify.com/" rel="noreferrer" target="_blank"> Netlify</a>
+            </footer>
+    </div>
     </div>
   );
 }
