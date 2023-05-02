@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import "./Weather.css";
 import axios from "axios";
 import FormatDate from "./FormatDate";
+import Icon from "./Icon";
 
 
 export default function Weather(props){
@@ -17,7 +18,7 @@ function handleResponse(response){
         city: response.data.name,
         description: response.data.weather[0].description,
         humidity: response.data.main.humidity,
-        icon: "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+        icon:response.data.weather[0].icon,
         date: new Date(response.data.dt*1000)
     })
 }
@@ -58,10 +59,11 @@ if (weather.ready) {
     <div className="row mt-3">
         <div className="col-sm-6"> 
         <div className="clearfix">
-        <img src={weather.icon} alt={weather.description}
-        className="float-left" />
+        <Icon code={weather.icon} size={48} />
+        
        <span className="temperature"> {weather.temperature} </span> <span className="unit">°C </span>
         </div>
+        
         </div>
         <div className="col-sm-6">
             <ul>

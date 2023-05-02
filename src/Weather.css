@@ -28,14 +28,13 @@ text-align: left;
     font-size: 19px;
     font-weight: 100;
 }
-.Weather img{
-    height: 70px;
-    width: 70px;
+.Weather canvas{
+   
     display: inline-block;
     margin-right: 10px;
     line-height: 64px;
     position:relative;
-    margin-top: -15px;
+    margin-top: -2px;
 
 }
 .Weather .temperature {
