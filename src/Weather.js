@@ -1,10 +1,12 @@
 import React, {useState} from "react";
 import "./Weather.css";
 import axios from "axios";
+import FormatDate from "./FormatDate";
 
 
 export default function Weather(props){
     const [weather, setWeather]= useState({ready: false });
+    const [city, setCity]= useState(props.defaultCity);
 function handleResponse(response){
     console.log(response.data);
 
@@ -16,18 +18,32 @@ function handleResponse(response){
         description: response.data.weather[0].description,
         humidity: response.data.main.humidity,
         icon: "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
-        date: "Wednesday 7:00"
+        date: new Date(response.data.dt*1000)
     })
+}
+function search(){
+    const apiKey = "1dbf926d3b4417bf379db7043bec1047";
+    let apiUrl =`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+axios.get(apiUrl).then(handleResponse);
+}
+
+function handleSubmit(event){
+    event.preventDefault();
+    search();
+}
+
+function handleCityChange(event){
+setCity(event.target.value);
 }
 
 if (weather.ready) {
 
     return(
     <div className="Weather"> 
-    <form>
+    <form onSubmit={handleSubmit}>
         <div className="row">
             <div className="col-9">
-        <input type="search" placeholder="Enter a city..." autoFocus="on" className="form-control"/>
+        <input type="search" onChange={handleCityChange} placeholder="Enter a city..." autoFocus="on" className="form-control"/>
         </div>
         <div className="col-3">
         <input type="submit" value="Search" className="btn btn-primary w-100"/>
@@ -36,7 +52,7 @@ if (weather.ready) {
     </form>
     <h1> {weather.city}</h1>
     <ul>
-        <li> {weather.date}</li>
+        <li> <FormatDate date={weather.date} /> </li>
         <li className="text-capitalize"> {weather.description} </li>
     </ul>
     <div className="row mt-3">
@@ -58,10 +74,7 @@ if (weather.ready) {
      </div>);
 }
 else{
-
-    const apiKey = "1dbf926d3b4417bf379db7043bec1047";
-    let apiUrl =`https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
-axios.get(apiUrl).then(handleResponse);
+search();   
 return "Loading ...";
 }
 }
