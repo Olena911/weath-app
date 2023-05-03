@@ -3,6 +3,7 @@ import "./Weather.css";
 import axios from "axios";
 import FormatDate from "./FormatDate";
 import Icon from "./Icon";
+import UnitConversion from "./UnitConversion";
 
 
 export default function Weather(props){
@@ -60,10 +61,11 @@ if (weather.ready) {
         <div className="col-sm-6"> 
         <div className="clearfix">
         <Icon code={weather.icon} size={48} />
-        
-       <span className="temperature"> {weather.temperature} </span> <span className="unit">°C </span>
+        <div className="float-left">
+
+        <UnitConversion celsius={weather.temperature} />
         </div>
-        
+        </div>
         </div>
         <div className="col-sm-6">
             <ul>

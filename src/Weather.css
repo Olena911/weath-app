@@ -5,10 +5,18 @@
     color:rgb(80, 6, 90);
     padding: 40px;
     margin: 30px auto;
-    max-width:600px;
+    max-width:650px;
     border-radius: 5px;
 }
+.btn-primary {
+    background-color: #704c91;
+    border-color: #704c91;}
 
+.btn-primary:hover{
+    color: #704c91;
+    background-color: #f9f9f6;
+    border-color: #704c91;
+    transition: all 200ms ease-in-out;}
 
 .Weather h1{
     margin-top:20px;
@@ -31,13 +39,20 @@ text-align: left;
 .Weather canvas{
    
     display: inline-block;
-    margin-right: 10px;
+    margin-right: 2px;
     line-height: 64px;
     position:relative;
-    margin-top: -2px;
+    margin-top: 5px;
 
 }
+.Weather .float-left {
+    position: relative;
+    top: 5px;
+    left:-80px;
+    float: right;}
+
 .Weather .temperature {
+ display:inline-block;
     font-weight: bold;
     font-size:54px;
     line-height: 54px;
@@ -50,3 +65,5 @@ text-align: left;
     top: -26px;
 
 }
+
+   
