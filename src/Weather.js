@@ -4,17 +4,19 @@ import axios from "axios";
 import FormatDate from "./FormatDate";
 import Icon from "./Icon";
 import UnitConversion from "./UnitConversion";
+import WeatherForecastDaily from "./WeatherForecastDaily";
 
 
 export default function Weather(props){
-    const [weather, setWeather]= useState({ready: false });
+    const [weather, setWeather]= useState({ready: false});
     const [city, setCity]= useState(props.defaultCity);
+
 function handleResponse(response){
-    console.log(response.data);
 
     setWeather({
         ready:true,
-        temperature: (Math.round(response.data.main. temp)),
+        coordinates: response.data.coord,
+        temperature: (Math.round(response.data.main.temp)),
         wind:response.data.wind.speed,
         city: response.data.name,
         description: response.data.weather[0].description,
@@ -60,7 +62,7 @@ if (weather.ready) {
     <div className="row mt-3">
         <div className="col-sm-6"> 
         <div className="clearfix">
-        <Icon code={weather.icon} size={48} />
+        <Icon code={weather.icon} size={52} />
         <div className="float-left">
 
         <UnitConversion celsius={weather.temperature} />
@@ -73,7 +75,9 @@ if (weather.ready) {
                 <li>Wind: {weather.wind} km/h</li>
             </ul>
         </div>
-    
+        <hr />
+
+        < WeatherForecastDaily coordinates={weather.coordinates} />
     </div>
      </div>);
 }
